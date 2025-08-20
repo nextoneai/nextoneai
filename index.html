@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NextOneAI — Turn Skills into Sequenced Income</title>
+  <meta name="description" content="NextOneAI matches your skills to sequenced freelance job packets and helps you form winning teams to earn more, faster." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior:smooth }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100">
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-cyan-400"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="currentColor" stroke-width="1.5"/><path d="M12 7l4 2v6l-4 2-4-2V9l4-2z" fill="currentColor"/></svg>
+        <span class="font-extrabold tracking-tight text-xl">NextOneAI</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#how" class="hover:text-cyan-400">How it Works</a>
+        <a href="#features" class="hover:text-cyan-400">Features</a>
+        <a href="#pricing" class="hover:text-cyan-400">Pricing</a>
+        <a href="#faq" class="hover:text-cyan-400">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#signup" class="hidden sm:inline-block px-4 py-2 rounded-xl border border-white/20 hover:border-cyan-400/60">Sign in</a>
+        <a href="#cta" class="inline-block px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold">Get Packets</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="cta" class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/10 via-slate-900 to-slate-950 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+          Turn your next gig into a <span class="text-cyan-400">sequence</span> —
+          earn more with <span class="text-cyan-400">project packets</span>.
+        </h1>
+        <p class="mt-5 text-slate-300 text-lg">NextOneAI analyzes thousands of freelance jobs, builds a knowledge graph of tasks, and recommends smart sequences you can do solo or with a team to maximize income.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#signup" class="px-5 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold">Start free</a>
+          <a href="#how" class="px-5 py-3 rounded-xl border border-white/20 hover:border-cyan-400/60">See how it works</a>
+        </div>
+        <div class="mt-6 text-sm text-slate-400">No credit card needed · Cancel anytime</div>
+      </div>
+      <div class="relative">
+        <div class="glass rounded-2xl p-4 border border-white/10 shadow-2xl">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded-xl bg-slate-900 border border-white/10">
+              <div class="text-xs text-slate-400">Matched Sequence (Solo)</div>
+              <div class="mt-2 text-3xl font-bold">3 jobs</div>
+              <div class="text-sm text-slate-400">Est. +$1,450 / 2 wks</div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-900 border border-white/10">
+              <div class="text-xs text-slate-400">Matched Sequence (Team)</div>
+              <div class="mt-2 text-3xl font-bold">5 jobs</div>
+              <div class="text-sm text-slate-400">Est. +$4,050 / 3 wks</div>
+            </div>
+            <div class="col-span-2 p-4 rounded-xl bg-slate-900 border border-white/10">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-xs text-slate-400">Your Skill Fit</div>
+                  <div class="text-2xl font-bold"><span id="skillFit">82</span>%</div>
+                </div>
+                <button id="simulateBtn" class="px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold">Simulate</button>
+              </div>
+              <div class="mt-4 w-full bg-slate-800 rounded-full h-2">
+                <div id="fitBar" class="h-2 rounded-full bg-cyan-400" style="width: 82%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -z-10 blur-3xl -top-10 -right-10 h-56 w-56 bg-cyan-500/20 rounded-full"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logos / social proof -->
+  <section class="py-10 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm text-slate-400">Integrates first with</p>
+      <div class="mt-4 inline-flex items-center gap-6 opacity-80">
+        <span class="px-3 py-1 rounded-md border border-white/10">Freelancer.com</span>
+        <span class="px-3 py-1 rounded-md border border-white/10">+ Upwork (config-ready)</span>
+        <span class="px-3 py-1 rounded-md border border-white/10">+ Fiverr (config-ready)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-extrabold">How it works</h2>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <div class="text-cyan-400 font-bold text-sm">Step 1</div>
+          <h3 class="mt-2 font-semibold text-xl">Connect & Collect</h3>
+          <p class="mt-2 text-slate-300">Connect your profile or start with dummy JSON data. We ingest jobs and people data, then normalize skills and tags.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <div class="text-cyan-400 font-bold text-sm">Step 2</div>
+          <h3 class="mt-2 font-semibold text-xl">Build Knowledge Graphs</h3>
+          <p class="mt-2 text-slate-300">We construct two graphs: KG1 (Jobs/Tasks/Skills) and KG2 (People/Skills/Preferences) using Neo4j.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <div class="text-cyan-400 font-bold text-sm">Step 3</div>
+          <h3 class="mt-2 font-semibold text-xl">Sequence & Match</h3>
+          <p class="mt-2 text-slate-300">Our engine scores skills fit and sequences jobs into packets that you can do solo or with a team for higher earnings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 border-y border-white/10 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-extrabold">Why NextOneAI</h2>
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <h3 class="font-semibold text-lg">Graph-first matching</h3>
+          <p class="mt-2 text-slate-300">Knowledge graphs find non-obvious sequences of jobs that compound your income.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <h3 class="font-semibold text-lg">Team up in one click</h3>
+          <p class="mt-2 text-slate-300">Discover complementary profiles to execute larger packets together.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <h3 class="font-semibold text-lg">API modularity</h3>
+          <p class="mt-2 text-slate-300">Start with Freelancer.com. Add Upwork/Fiverr later via configuration—no rewrites.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <h3 class="font-semibold text-lg">Actionable packets</h3>
+          <p class="mt-2 text-slate-300">Clear tasks, time estimates, and expected earnings for each packet.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <h3 class="font-semibold text-lg">Fair, transparent scoring</h3>
+          <p class="mt-2 text-slate-300">Understand why a packet matches you—and how to improve your fit.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <h3 class="font-semibold text-lg">Privacy by design</h3>
+          <p class="mt-2 text-slate-300">You control your profile. Bring your own data or start with anonymous onboarding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive: Earnings Estimator -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-3xl font-extrabold">Estimate your earnings</h2>
+          <p class="mt-2 text-slate-300">Use the sliders to preview how packet size and team size affect potential income.</p>
+          <div class="mt-6 space-y-6 p-6 rounded-2xl bg-slate-900 border border-white/10">
+            <div>
+              <label class="text-sm text-slate-300">Packet size (jobs)</label>
+              <input id="jobsRange" type="range" min="1" max="8" value="3" class="w-full">
+              <div class="text-sm text-slate-400">Selected: <span id="jobsVal">3</span> jobs</div>
+            </div>
+            <div>
+              <label class="text-sm text-slate-300">Team size (people)</label>
+              <input id="teamRange" type="range" min="1" max="5" value="1" class="w-full">
+              <div class="text-sm text-slate-400">Selected: <span id="teamVal">1</span> person</div>
+            </div>
+            <div>
+              <label class="text-sm text-slate-300">Average job value (USD)</label>
+              <input id="valueRange" type="range" min="100" max="2000" step="50" value="500" class="w-full">
+              <div class="text-sm text-slate-400">Selected: $<span id="valueVal">500</span></div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-800 flex items-center justify-between">
+              <div>
+                <div class="text-xs text-slate-400">Estimated Packet Earnings</div>
+                <div class="text-2xl font-bold">$<span id="earnings">1500</span></div>
+              </div>
+              <div class="text-sm text-slate-400">(Assumes +15% compounding for sequenced jobs)</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10">
+          <h3 class="text-xl font-semibold">What you get</h3>
+          <ul class="mt-4 space-y-3 list-disc list-inside text-slate-300">
+            <li>Personalized packet recommendations weekly</li>
+            <li>Skill-gap insights to raise your score</li>
+            <li>One-click invitations to team up</li>
+            <li>Transparent earnings projections</li>
+          </ul>
+          <a href="#signup" class="mt-6 inline-block px-5 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold">Get started free</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        <h2 class="text-3xl font-extrabold">Simple, fair pricing</h2>
+        <label class="inline-flex items-center gap-2 text-sm">
+          <span class="text-slate-300">Monthly</span>
+          <input type="checkbox" id="billingToggle" class="sr-only">
+          <span class="w-12 h-6 bg-slate-700 rounded-full relative cursor-pointer" onclick="toggleBilling()">
+            <span id="knob" class="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white transition-all"></span>
+          </span>
+          <span class="text-slate-300">Yearly <span class="text-cyan-400">(save 20%)</span></span>
+        </label>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10 flex flex-col">
+          <h3 class="font-semibold text-lg">Starter</h3>
+          <div class="mt-3 text-3xl font-extrabold">$<span data-month="0" data-year="0" class="price">0</span><span class="text-base font-medium">/mo</span></div>
+          <ul class="mt-4 space-y-2 text-slate-300 flex-1">
+            <li>3 packet recommendations / week</li>
+            <li>Solo matching</li>
+            <li>Freelancer.com data</li>
+          </ul>
+          <a href="#signup" class="mt-6 inline-block px-4 py-2 rounded-xl border border-white/20 hover:border-cyan-400/60">Try free</a>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-cyan-600 ring-2 ring-cyan-600/30 flex flex-col">
+          <div class="text-xs text-cyan-400 font-bold">Most Popular</div>
+          <h3 class="mt-1 font-semibold text-lg">Pro</h3>
+          <div class="mt-3 text-3xl font-extrabold">$<span data-month="29" data-year="23" class="price">29</span><span class="text-base font-medium">/mo</span></div>
+          <ul class="mt-4 space-y-2 text-slate-300 flex-1">
+            <li>Unlimited packet recommendations</li>
+            <li>Team matching</li>
+            <li>API modularity (enable more platforms)</li>
+          </ul>
+          <a href="#signup" class="mt-6 inline-block px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold">Go Pro</a>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900 border border-white/10 flex flex-col">
+          <h3 class="font-semibold text-lg">Business</h3>
+          <div class="mt-3 text-3xl font-extrabold">$<span data-month="79" data-year="63" class="price">79</span><span class="text-base font-medium">/mo</span></div>
+          <ul class="mt-4 space-y-2 text-slate-300 flex-1">
+            <li>Private team workspaces</li>
+            <li>Advanced analytics</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#signup" class="mt-6 inline-block px-4 py-2 rounded-xl border border-white/20 hover:border-cyan-400/60">Contact sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-extrabold">Frequently asked questions</h2>
+      <div class="mt-8 divide-y divide-white/10">
+        <details class="group py-4">
+          <summary class="cursor-pointer list-none flex items-center justify-between">
+            <span class="font-semibold">Do I need an API key to start?</span>
+            <span class="group-open:rotate-180 transition-transform">⌄</span>
+          </summary>
+          <p class="mt-3 text-slate-300">No. You can start with dummy JSON data for both jobs and people. Connect Freelancer.com later in settings.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="cursor-pointer list-none flex items-center justify-between">
+            <span class="font-semibold">Can I invite teammates?</span>
+            <span class="group-open:rotate-180 transition-transform">⌄</span>
+          </summary>
+          <p class="mt-3 text-slate-300">Yes. Pro and Business plans include team matching and shared packets.</p>
+        </details>
+        <details class="group py-4">
+          <summary class="cursor-pointer list-none flex items-center justify-between">
+            <span class="font-semibold">Which platforms are supported?</span>
+            <span class="group-open:rotate-180 transition-transform">⌄</span>
+          </summary>
+          <p class="mt-3 text-slate-300">We start with Freelancer.com. Upwork and Fiverr can be enabled via configuration with no code changes.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup CTA -->
+  <section id="signup" class="py-20 border-t border-white/10 bg-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-extrabold">Claim your next sequence</h2>
+      <p class="mt-2 text-slate-300">Get your first packet in minutes. Start free, upgrade anytime.</p>
+      <form class="mt-6 grid sm:grid-cols-[1fr_auto] gap-3 max-w-xl mx-auto">
+        <input type="email" placeholder="you@domain.com" class="px-4 py-3 rounded-xl bg-slate-800 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+        <button class="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold">Get started</button>
+      </form>
+      <div class="mt-4 text-xs text-slate-400">By continuing you agree to our <a class="underline" href="#">Terms</a> & <a class="underline" href="#">Privacy</a>.</div>
+    </div>
+  </section>
+
+  <footer class="py-10 text-center text-sm text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-cyan-400"><path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" stroke="currentColor" stroke-width="1.5"/><path d="M12 7l4 2v6l-4 2-4-2V9l4-2z" fill="currentColor"/></svg>
+          <span>NextOneAI</span>
+        </div>
+        <div class="opacity-70">© <span id="year"></span> NextOneAI. All rights reserved.</div>
+        <div class="flex items-center gap-4">
+          <a href="#features" class="hover:text-cyan-400">Features</a>
+          <a href="#pricing" class="hover:text-cyan-400">Pricing</a>
+          <a href="#faq" class="hover:text-cyan-400">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hero simulate button animates skill fit
+    const btn = document.getElementById('simulateBtn');
+    const bar = document.getElementById('fitBar');
+    const val = document.getElementById('skillFit');
+    btn?.addEventListener('click', () => {
+      const n = Math.floor(60 + Math.random() * 40); // 60–100
+      bar.style.width = n + '%';
+      val.textContent = n;
+      btn.textContent = 'Simulated';
+      setTimeout(() => btn.textContent = 'Simulate', 1200);
+    });
+
+    // Earnings estimator
+    const jobsRange = document.getElementById('jobsRange');
+    const teamRange = document.getElementById('teamRange');
+    const valueRange = document.getElementById('valueRange');
+    const jobsVal = document.getElementById('jobsVal');
+    const teamVal = document.getElementById('teamVal');
+    const valueVal = document.getElementById('valueVal');
+    const earnings = document.getElementById('earnings');
+
+    function calc() {
+      const jobs = +jobsRange.value;
+      const team = +teamRange.value;
+      const avg = +valueRange.value;
+      // base earnings = jobs * avg; compounding bonus for sequenced jobs = +15%
+      const base = jobs * avg;
+      const bonus = base * 0.15;
+      // team efficiency multiplier (diminishing returns)
+      const teamMult = 1 + Math.log10(team + 9) - 1; // ~ 1x to ~1.3x
+      const total = Math.round((base + bonus) * teamMult);
+      jobsVal.textContent = jobs;
+      teamVal.textContent = team;
+      valueVal.textContent = avg;
+      earnings.textContent = total.toLocaleString();
+    }
+
+    [jobsRange, teamRange, valueRange].forEach(el => el.addEventListener('input', calc));
+    calc();
+
+    // Pricing toggle
+    function toggleBilling(){
+      const knob = document.getElementById('knob');
+      const toggle = document.getElementById('billingToggle');
+      toggle.checked = !toggle.checked;
+      knob.style.left = toggle.checked ? 'calc(100% - 1.375rem)' : '0.125rem';
+      document.querySelectorAll('.price').forEach(span => {
+        const m = Number(span.getAttribute('data-month'));
+        const y = Number(span.getAttribute('data-year'));
+        span.textContent = (toggle.checked ? y : m).toString();
+      });
+    }
+    window.toggleBilling = toggleBilling;
+  </script>
+</body>
+</html>
